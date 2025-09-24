@@ -9,8 +9,10 @@ public class Game1 : Game
     private GraphicsDeviceManager _graphics;
     private SpriteBatch _spriteBatch;
     private Player _player;
-    private Texture2D _playerSheet;
+    private Texture2D _spriteSheet;
     private Camera2D _camera;
+    private Tileset _tileset;
+    private TileMap _tileMap;
 
     public Game1()
     {
@@ -30,11 +32,16 @@ public class Game1 : Game
     {
         _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-        _playerSheet = Content.Load<Texture2D>("golf-removebg");
-        _player = new Player(_playerSheet, new Vector2(200, 200));
+        _spriteSheet = Content.Load<Texture2D>("golf-removebg");
+        _player = new Player(_spriteSheet, new Vector2(200, 200));
         _camera = new Camera2D(GraphicsDevice);
         // Center camera on initial player position (add half frame to center on sprite middle)
         _camera.Update(_player.Position + new Vector2(8, 8));
+
+        // World / tileset setup (reuse same sheet for now)
+        _tileset = new Tileset(_spriteSheet, 16);
+        _tileMap = new TileMap(64, 64, _tileset, 16);
+        _tileMap.GenerateHole(new Point(8, 54), new Point(52, 10));
     }
 
     protected override void Update(GameTime gameTime)
@@ -53,7 +60,8 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-    _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+        _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix(), samplerState: SamplerState.PointClamp);
+        _tileMap.Draw(_spriteBatch);
         _player.Draw(_spriteBatch);
         _spriteBatch.End();
 
