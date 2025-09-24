@@ -1,0 +1,83 @@
+# --- Core build artifacts ---
+[Bb]in/
+[Oo]bj/
+**/[Bb]in/
+**/[Oo]bj/
+
+# Common configuration-based folders
+[Dd]ebug/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Aa]rtifacts/
+
+# MonoGame Content Pipeline intermediates (keep original assets & .mgcb)
+**/Content/bin/
+**/Content/obj/
+**/*.mgcontent
+**/*.mgstats
+
+# Keep: *.png, *.wav, *.ogg, *.fbx, *.mgcb (DO NOT add them here)
+
+# NuGet / package caches
+packages/
+*.nupkg
+project.lock.json
+*.nuget.props
+*.nuget.targets
+.nuget/
+
+# IDE specifics
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+.idea/
+*.iml
+_ReSharper.*
+*.DotSettings.user
+
+# Build results
+*.exe
+*.dll
+*.pdb
+*.cache
+*.mdb
+*.xml
+*.json.user
+
+# Logs / temp
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*.orig
+
+# Profiling / analysis
+*.vsp
+*.vspx
+*.sap
+
+# OS junk
+Thumbs.db
+Desktop.ini
+*.DS_Store
+
+# Publish output
+publish/
+
+# Optional: uncomment if you generate docs locally and don't want them
+# /docs/
+
+# Crash dumps
+*.dmp
+
+# Prevent accidental inclusion of large export dumps
+*.tgz
+*.zip
+
+# --- END .gitignore ---
