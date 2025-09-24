@@ -10,6 +10,7 @@ public class Game1 : Game
     private SpriteBatch _spriteBatch;
     private Player _player;
     private Texture2D _playerSheet;
+    private Camera2D _camera;
 
     public Game1()
     {
@@ -31,6 +32,9 @@ public class Game1 : Game
 
         _playerSheet = Content.Load<Texture2D>("golf-removebg");
         _player = new Player(_playerSheet, new Vector2(200, 200));
+        _camera = new Camera2D(GraphicsDevice);
+        // Center camera on initial player position (add half frame to center on sprite middle)
+        _camera.Update(_player.Position + new Vector2(8, 8));
     }
 
     protected override void Update(GameTime gameTime)
@@ -39,6 +43,8 @@ public class Game1 : Game
             Exit();
 
         _player.Update(gameTime);
+        // Update camera after player movement
+        _camera.Update(_player.Position + new Vector2(8, 8)); // 16px frame -> +8 centers
 
         base.Update(gameTime);
     }
@@ -47,7 +53,7 @@ public class Game1 : Game
     {
         GraphicsDevice.Clear(Color.CornflowerBlue);
 
-        _spriteBatch.Begin(samplerState: SamplerState.PointClamp);
+    _spriteBatch.Begin(transformMatrix: _camera.GetViewMatrix(), samplerState: SamplerState.PointClamp);
         _player.Draw(_spriteBatch);
         _spriteBatch.End();
 
