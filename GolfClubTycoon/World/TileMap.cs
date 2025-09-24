@@ -122,11 +122,6 @@ public class TileMap
             }
         }
 
-        if (InBounds(CupTile.X, CupTile.Y))
-        {
-            var cupPos = new Vector2(CupTile.X * _tileSize, CupTile.Y * _tileSize);
-            var src = _tileset.GetCenterSource(TileType.Sand);
-            spriteBatch.Draw(tex, cupPos, src, new Color(60, 110, 60));
-        }
+        // Cup/hole placeholder removed; future: draw dedicated flag / cup asset here.
     }
 }
