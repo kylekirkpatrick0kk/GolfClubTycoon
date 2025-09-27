@@ -49,3 +49,5 @@ Open an issue or request here what you want next (camera, tiles, collisions, UI)
 
 ---
 Happy building! 🏌️‍♂️
+
+Credit to https://alexs-assets.itch.io/ for the game art
